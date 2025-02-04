@@ -1,0 +1,33 @@
+The error **"`durga/` does not have a commit checked out"** usually means that `durga/` is a **Git submodule** or an **empty directory** inside your repository.  
+
+### **Possible Causes & Fixes**  
+
+#### ✅ **1. If `durga/` is a directory, ensure it contains files**  
+Git **does not track empty directories**, so make sure `durga/` contains at least one file before adding it:  
+```sh
+touch durga/.gitkeep  # Creates a dummy file
+git add durga/
+git commit -m "Added durga directory"
+git push origin main
+```
+
+#### ✅ **2. If `durga/` is a Git submodule, initialize it**  
+If `durga/` is a **Git submodule**, initialize it before adding:  
+```sh
+git submodule update --init --recursive
+```
+Then try adding again:
+```sh
+git add durga/
+git commit -m "Added submodule"
+git push origin main
+```
+
+#### ✅ **3. Check the Status**  
+Run:  
+```sh
+git status
+```
+It will show if there’s an issue with tracking `durga/`.  
+
+Let me know what `git status` says! 🚀
